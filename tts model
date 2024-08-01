@@ -1,0 +1,21 @@
+!sudo apt install libasound2-dev portaudio19-dev libportaudio2 libportaudiocpp0 ffmpeg
+!pip install pyaudio
+!pip install gtts SpeechRecognition pydub
+!apt-get install ffmpeg
+pip install gtts pydub
+from gtts import gTTS
+from pydub import AudioSegment
+from pydub.playback import play
+
+# Function to convert text to speech
+def text_to_speech(text, filename='output.mp3'):
+    tts = gTTS(text=text, lang='en')
+    tts.save(filename)
+    sound = AudioSegment.from_mp3(filename)
+    play(sound)
+    return filename
+
+if __name__ == "__main__":
+    text = "**Your text here** "
+    filename = "output.mp3"
+    text_to_speech(text, filename)
